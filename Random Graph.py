@@ -4,9 +4,16 @@ def graph(x,y):
     plt.scatter(x,y)
     plt.xlabel("X-Axis")
     plt.ylabel("Y-Axis")
-    plt.title("Randomlt Generated Points")
-    plt.savefig("graph.png")
+    plt.title("Randomly Generated Points")
     plt.show()
-x = [random.randint(1,10)]
-y = [random.randint(1,10)]
+def rand():
+  X = []
+  Y = []
+  for _ in range(15):
+    x = random.randint(0,20)
+    y = random.randint(0,20)
+    X.append(x)
+    Y.append(y)
+  return X, Y
+x, y = rand()
 graph(x,y)
