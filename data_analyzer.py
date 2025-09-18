@@ -9,7 +9,7 @@ class DataAnalyzer:
 
     def __init__(self, folders=None):
         if not folders is None:
-            self.folder = ["RL_LSTM_Progress_Data"]
+            self.folder = folders
 
     def get_csv_data(self, filename):
         # This reads a csv file and appends the data to the dictionary.
