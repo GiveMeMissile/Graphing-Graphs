@@ -7,6 +7,8 @@ import math
 class DataAnalyzer:
     # A class which is used to graph and collect data from csv files.
 
+    data = None
+
     def __init__(self, folders=None):
         if not folders is None:
             self.folder = folders
@@ -14,13 +16,28 @@ class DataAnalyzer:
     def get_csv_data(self, filename):
         # This reads a csv file and appends the data to the dictionary.
 
+        file_exists = False
+        file_folder = None
+
         for folder in self.folder:
             if not os.path.isfile(folder + "/" + filename):
                 print("File does not exist.")
-                return
+            else:
+                file_exists = True
+                file_folder = folder
+                break
         
-        df = pd.read_csv(self.folder + "/" + filename)
+        if not file_exists:
+            print("File does not exist in any of the given folders.")
+            return None
+        
+        df = pd.read_csv(file_folder + "/" + filename)
         csv_data = df.to_dict(orient="list")
+
+        if self.data is None:
+            self.data = csv_data
+            return self.data
+
         for key in self.data.keys():
             if key in csv_data:
                 self.data[key] = csv_data[key]
